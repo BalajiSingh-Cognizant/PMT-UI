@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="memberForm" (ngSubmit)="OnSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="imagePath">Experience</label>
+            <input
+              type="text"
+              id="experience"
+              class="form-control"
+              formControlName="experience"
+            />
+          </div>
+        </div>
+
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="imagePath">Allocation</label>
+            <input
+              type="text"
+              id="allocation"
+              class="form-control"
+              formControlName="allocation"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input
+              type="date"
+              formControlName="startDate"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label class="form-label">End Date</label>
+            <input type="date" formControlName="endDate" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              rows="2"
+              formControlName="description"
+            >
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="skills">
+          <div
+            class="row"
+            *ngFor="let skill of controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px"
+          >
+            <div class="col-xs-10">
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteSkill(i)"
+              >
+                X
+              </button>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="OnAddSkill()"
+              >
+                Add Skill
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

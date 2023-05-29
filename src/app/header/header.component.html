@@ -1,0 +1,37 @@
+<nav class="nav-bar nav-bar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Project Management Tracker</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul *ngIf="isUserAuthenticated()" class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/members">Members</a></li>
+        <li routerLinkActive="active">
+          <a routerLink="/tasks">Tasks</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="isUserAuthenticated()" class="dropdown" appDropdown>
+          <a
+            style="cursor: pointer"
+            class="dropdown-toggle"
+            role="button"
+            (click)="logOut()"
+          >
+            Logout
+          </a>
+        </li>
+        <li *ngIf="!isUserAuthenticated()" class="dropdown" appDropdown>
+          <a
+            style="cursor: pointer"
+            class="dropdown-toggle"
+            role="button"
+            routerLink="/login"
+          >
+            Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
