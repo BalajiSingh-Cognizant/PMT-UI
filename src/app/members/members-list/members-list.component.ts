@@ -3,6 +3,7 @@ import { Member } from '../member.model';
 import { MembersService } from '../members.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-members-list',
@@ -20,12 +21,13 @@ export class MembersListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.members = this.membersService.getMembers();
+
     this.subscription = this.membersService.membersListChanged.subscribe(
       (members: Member[]) => {
         this.members = members;
       }
     );
-    this.members = this.membersService.getMembers();
   }
 
   addNewMember() {

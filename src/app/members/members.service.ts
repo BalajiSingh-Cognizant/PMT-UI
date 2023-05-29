@@ -1,38 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Member } from './member.model';
 import { Subject } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 
 @Injectable()
 export class MembersService {
   membersListChanged = new Subject<Member[]>();
-  private membersList: Member[] = [
-    new Member(
-      'Karhtik',
-      '8',
-      [
-        'Eating Head',
-        'Cooking ok ok',
-        'Always watching DisnepplusHotstar',
-        'Enjoy enjome',
-      ],
-      'No.1 Stupid fellow',
-      '0',
-      '2021-02-27T10:18:24.188Z',
-      '2023-05-09T17:18:24.188Z'
-    ),
-    new Member(
-      'Balaji',
-      '10',
-      ['Angular', 'DOTNET', 'Mobile App Development', 'Enjoy enjome'],
-      'Smart but..',
-      '0',
-      '2022-02-27T10:18:24.188Z',
-      '2023-05-09T17:18:24.188Z'
-    ),
-  ];
+  private membersList: Member[];
 
+  readonly BaseURI = 'http://localhost:8010/manager/';
+  token = localStorage.getItem('jwt');
+  // Http Options
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    }),
+  };
+
+  constructor(private http: HttpClient) {}
   getMembers() {
-    return this.membersList.slice();
+    // return this.membersList.slice();
+    const members = this.http
+      .get<Member[]>(this.BaseURI + 'GetMembers', this.httpOptions)
+      .subscribe({
+        next: (result: any) => (this.membersList = result),
+        error: (err: HttpErrorResponse) => console.log(err),
+      });
+
+    return this.membersList;
   }
 
   getMember(index: number) {
