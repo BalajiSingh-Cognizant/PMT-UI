@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Member } from './member.model';
+import { Member, MemberModel } from './member.model';
 import { Subject } from 'rxjs';
 import {
   HttpClient,
@@ -11,6 +11,7 @@ import {
 export class MembersService {
   membersListChanged = new Subject<Member[]>();
   private membersList: Member[];
+  private member: MemberModel;
 
   readonly BaseURI = 'http://localhost:8010/manager/';
   token = localStorage.getItem('jwt');
@@ -39,8 +40,34 @@ export class MembersService {
     return this.membersList[index];
   }
 
-  addMember(member: Member) {
-    this.membersList.push(member);
-    this.membersListChanged.next(this.membersList.slice());
+  addMember(newmember: Member) {
+    this.member = {
+      name: newmember.name,
+      memberId: newmember.memberId,
+      description: newmember.description,
+      experience: newmember.experience,
+      allocationPercentage: newmember.allocationPercentage,
+      skills: newmember.skills,
+      startDate: newmember.startDate,
+      endDate: newmember.endDate,
+    };
+
+    this.http
+      .post(this.BaseURI + 'AddMember', this.member, this.httpOptions)
+      .subscribe({
+        next: (result: any) =>
+          this.membersListChanged.next(this.membersList.slice()),
+        error: (err: HttpErrorResponse) => console.log(err),
+      });
+  }
+
+  updateAllocation(percentage: string) {
+    this.http
+      .put(this.BaseURI + 'UpdateAllocation/' + percentage, this.httpOptions)
+      .subscribe({
+        next: (result: any) =>
+          this.membersListChanged.next(this.membersList.slice()),
+        error: (err: HttpErrorResponse) => console.log(err),
+      });
   }
 }

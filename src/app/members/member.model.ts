@@ -1,3 +1,14 @@
+export interface MemberModel {
+  name: string;
+  memberId: string;
+  experience: string;
+  allocationPercentage: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  skills: string[];
+}
+
 export class Member {
   private _name: string;
   public get name(): string {
@@ -5,6 +16,14 @@ export class Member {
   }
   public set name(v: string) {
     this._name = v;
+  }
+
+  private _memberId: string;
+  public get memberId(): string {
+    return this._memberId;
+  }
+  public set memberId(v: string) {
+    this._memberId = v;
   }
 
   private _description: string;
@@ -56,6 +75,7 @@ export class Member {
 
   constructor(
     name: string,
+    memberId: string,
     desc: string,
     skills: string[],
     allocation: string,
@@ -64,6 +84,7 @@ export class Member {
     endDate: string
   ) {
     this._name = name;
+    this._memberId = memberId;
     this._description = desc;
     this._skills = skills;
     this._allocationPercentage = allocation;

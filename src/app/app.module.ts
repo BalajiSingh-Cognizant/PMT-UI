@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LoginService } from './login/login.service';
+import { UpdateAllocationComponent } from './members/update-allocation/update-allocation.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -32,6 +33,7 @@ export function tokenGetter() {
     TasksComponent,
     LoginComponent,
     HomeComponent,
+    UpdateAllocationComponent,
   ],
   imports: [
     BrowserModule,

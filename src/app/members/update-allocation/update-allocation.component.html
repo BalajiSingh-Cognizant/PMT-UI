@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-6">
+    <div class="form-group">
+      <label for="allocation">Change Allocation</label>
+      <input
+        type="text"
+        id="allocation"
+        [(ngModel)]="percentage"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <button class="btn btn-success" (click)="updateAllocation()">Update</button>
+  </div>
+</div>

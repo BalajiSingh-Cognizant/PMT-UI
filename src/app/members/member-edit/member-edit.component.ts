@@ -33,17 +33,19 @@ export class MemberEditComponent implements OnInit {
   }
 
   OnSubmit() {
+    const allSkills = this.memberForm.value.skills.map((s: any) => s.name);
     const newMember = new Member(
       this.memberForm.value['name'],
+      this.memberForm.value['memberId'],
       this.memberForm.value['description'],
-      this.memberForm.value['skills'],
-      this.memberForm.value['allocation'],
+      allSkills,
+      this.memberForm.value['allocationPercentage'],
       this.memberForm.value['experience'],
       this.memberForm.value['startDate'],
       this.memberForm.value['endDate']
     );
 
-    this.memberService.addMember(this.memberForm.value);
+    this.memberService.addMember(newMember);
     this.onCancel();
   }
 
@@ -65,15 +67,21 @@ export class MemberEditComponent implements OnInit {
 
   private initForm() {
     let memberName = '';
+    let memberId = '';
     let memberDescription = '';
     let memberExperience = '';
+    let memberAllocationPercentage = '';
     let skills = new FormArray([]);
     let memberStartDate = new Date();
     let memberEndDate = new Date();
 
     this.memberForm = new FormGroup({
       name: new FormControl(memberName, [Validators.required]),
-      imagePath: new FormControl(memberExperience, [Validators.required]),
+      memberId: new FormControl(memberId, [Validators.required]),
+      experience: new FormControl(memberExperience, [Validators.required]),
+      allocationPercentage: new FormControl(memberAllocationPercentage, [
+        Validators.required,
+      ]),
       description: new FormControl(memberDescription, [Validators.required]),
       skills: skills,
       startDate: new FormControl(memberStartDate, [
