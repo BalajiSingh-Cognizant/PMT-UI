@@ -1,0 +1,10 @@
+.btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container-outer {
+    margin-top: 20px;
+    margin: auto;
+    max-width: 500px;
+  }

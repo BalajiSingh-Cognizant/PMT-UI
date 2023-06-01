@@ -5,14 +5,16 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul *ngIf="isUserAuthenticated()" class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/members">Members</a></li>
+        <li routerLinkActive="active" *ngIf="isManager">
+          <a routerLink="/members">Members</a>
+        </li>
         <li routerLinkActive="active">
           <a routerLink="/tasks">Tasks</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="isManager">
           <a routerLink="/allocation">Allocation</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="isManager">
           <a routerLink="/assign-task">Assign Task</a>
         </li>
       </ul>

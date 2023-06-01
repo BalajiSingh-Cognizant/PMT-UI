@@ -1,41 +1,42 @@
-<div class="row">
-  <div class="col-xs-6">
-    <label for="memberId">Member Details</label>
-    <input
-      type="text"
-      id="memberId"
-      class="form-control"
-      [(ngModel)]="memberdetails"
-    />
+<div class="container-outer">
+  <div class="row">
+    <div class="col-xs-6">
+      <input
+        type="text"
+        id="memberId"
+        class="form-control"
+        [(ngModel)]="memberdetails"
+        placeholder="Member Id"
+      />
+    </div>
+    <div class="col-xs-6">
+      <input
+        type="text"
+        id="taskdetails"
+        class="form-control"
+        [(ngModel)]="taskdetails"
+        placeholder="Task Name"
+      />
+    </div>
   </div>
-  <div class="col-xs-6">
-    <label for="taskdetails">Task Id</label>
-    <input
-      type="text"
-      id="taskdetails"
-      class="form-control"
-      [(ngModel)]="taskdetails"
-    />
+  <div class="row">
+    <div class="col-xs-2">
+      <button type="button" (click)="getTasks()" class="btn btn-success">
+        Get Tasks
+      </button>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-2">
-    <button type="button" (click)="getTasks()" class="btn btn-success">
-      Get Tasks
-    </button>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{ projectTaskMember.taskName }}</h1>
+    </div>
   </div>
-</div>
-<hr />
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{ projectTaskMember.taskName }}</h1>
+  <div class="row">
+    <div class="col-xs-12">{{ projectTaskMember.deliverables }}</div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">{{ projectTaskMember.deliverables }}</div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    {{ projectTaskMember.memberName }}
+  <div class="row">
+    <div class="col-xs-12">
+      {{ projectTaskMember.memberName }}
+    </div>
   </div>
 </div>
