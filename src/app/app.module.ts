@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LoginService } from './login/login.service';
 import { UpdateAllocationComponent } from './members/update-allocation/update-allocation.component';
+import { AssignTaskComponent } from './tasks/assign-task/assign-task.component';
+import { TasksService } from './tasks/tasks.service';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -34,6 +36,7 @@ export function tokenGetter() {
     LoginComponent,
     HomeComponent,
     UpdateAllocationComponent,
+    AssignTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [MembersService, LoginService],
+  providers: [MembersService, LoginService, TasksService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

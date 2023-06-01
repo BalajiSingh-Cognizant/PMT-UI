@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Member, MemberModel } from './member.model';
 import { Subject } from 'rxjs';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
+
+import { Member, MemberModel } from './member.model';
 
 @Injectable()
 export class MembersService {
@@ -24,6 +25,7 @@ export class MembersService {
   };
 
   constructor(private http: HttpClient) {}
+
   getMembers() {
     // return this.membersList.slice();
     const members = this.http
