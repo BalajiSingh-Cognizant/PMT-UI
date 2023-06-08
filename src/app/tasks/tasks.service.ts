@@ -11,7 +11,7 @@ import { ProjectTaskMember } from './project.task.member.model';
 @Injectable()
 export class TasksService {
   projectTaskMember: ProjectTaskMember;
-  readonly BaseURI = 'http://localhost:8010/manager/';
+  readonly BaseURI = 'https://managerapi20230607104733.azurewebsites.net/api/manager/';
   token = localStorage.getItem('jwt');
 
   constructor(private http: HttpClient) {}
