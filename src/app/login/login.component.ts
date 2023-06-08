@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.http
         .post<AuthenticatedResponse>(
-          'http://localhost:8010/auth',
+          'https://authenticationapi20230609070054.azurewebsites.net/api/auth',
           this.credentials,
           {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
