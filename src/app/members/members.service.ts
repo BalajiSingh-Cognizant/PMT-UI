@@ -14,7 +14,7 @@ export class MembersService {
   private membersList: Member[];
   private member: MemberModel;
 
-  readonly BaseURI = 'https://managerapi20230607104733.azurewebsites.net/api/manager';
+  readonly BaseURI = 'https://managerapi20230607104733.azurewebsites.net/api/manager/';
   token = localStorage.getItem('jwt');
   // Http Options
   httpOptions = {
